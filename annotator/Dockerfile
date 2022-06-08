@@ -16,7 +16,8 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Fetch  brat
 RUN mkdir /var/www/brat
-RUN curl http://weaver.nlplab.org/~brat/releases/brat-v1.3_Crunchy_Frog.tar.gz > /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz 
+# RUN curl http://weaver.nlplab.org/~brat/releases/brat-v1.3_Crunchy_Frog.tar.gz > /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz 
+COPY ./brat-v1.3_Crunchy_Frog.tar.gz /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz
 RUN cd /var/www/brat && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz
 
 # create a symlink so users can mount their data volume at /bratdata rather than the full path
