@@ -37,10 +37,10 @@ RUN chmod +x /usr/bin/brat-install-wrapper.sh
 # Make sure apache can access it
 RUN chown -R www-data:www-data /var/www/brat/brat-v1.3_Crunchy_Frog/
 
-ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
+ADD ./conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # add the user patching script
-ADD user_patch.py /var/www/brat/brat-v1.3_Crunchy_Frog/user_patch.py
+ADD ./bin/user-patch.py /var/www/brat/brat-v1.3_Crunchy_Frog/user-patch.py
 
 # Enable cgi
 RUN a2enmod cgi
@@ -51,6 +51,6 @@ EXPOSE 80
 # Instead, use supervisor to monitor the apache process
 RUN mkdir -p /var/log/supervisor
 
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
+ADD ./conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 
 CMD ["/usr/bin/supervisord"]
