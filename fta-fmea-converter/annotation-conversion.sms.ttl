@@ -16,8 +16,8 @@
 @prefix spl: <http://spinrdf.org/spl#> .
 @prefix ufo: <http://onto.fel.cvut.cz/ontologies/ufo/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix fmea:<http://onto.fel.cvut.cz/ontologies/fmea/>
-@prefix fta: <http://onto.fel.cvut.cz/ontologies/fta-fmea-application/>
+@prefix fmea:<http://onto.fel.cvut.cz/ontologies/fmea/> .
+@prefix fta: <http://onto.fel.cvut.cz/ontologies/fta-fmea-application/> .
 
 <http://onto.fel.cvut.cz/ontologies/msmt/annotation-conversion>
   a owl:Ontology ;
