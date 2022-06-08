@@ -9,4 +9,7 @@ services:
     - ./annotator/brat-cfg:/brat-cfg
 #  fta-fmea:
 #  fta-fmea-server:
-#  fta-fmea-converter:
+fta-fmea-converter:
+    build: ./fta-fmea-converter/
+    container_name: msmt-fta-fmea-converter
+#  nginx
