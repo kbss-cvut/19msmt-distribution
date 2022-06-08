@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  annotator:
+    build: ./annotator/
+    container_name: msmt-annotator
+  volumes:
+    - ./annotator/brat-data:/brat-data
+    - ./annotator/brat-cfg:/brat-cfg
+#  fta-fmea:
+#  fta-fmea-server:
+#  fta-fmea-converter:
