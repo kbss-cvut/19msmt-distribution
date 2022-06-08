@@ -1,0 +1,94 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/msmt/annotation-conversion
+# imports: http://onto.fel.cvut.cz/ontologies/s-pipes-lib
+
+@prefix : <http://onto.fel.cvut.cz/ontologies/csat/time-analysis-0.1/> .
+@prefix doc: <http://onto.fel.cvut.cz/ontologies/documentation/> .
+@prefix kbss-module: <http://onto.fel.cvut.cz/ontologies/lib/module/> .
+@prefix km-sesame: <http://onto.fel.cvut.cz/ontologies/lib/module/sesame/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sm: <http://topbraid.org/sparqlmotion#> .
+@prefix sml: <http://topbraid.org/sparqlmotionlib#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix ufo: <http://onto.fel.cvut.cz/ontologies/ufo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fmea:<http://onto.fel.cvut.cz/ontologies/fmea/>
+@prefix fta: <http://onto.fel.cvut.cz/ontologies/fta-fmea-application/>
+
+<http://onto.fel.cvut.cz/ontologies/msmt/annotation-conversion>
+  a owl:Ontology ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/s-pipes-lib> ;
+.
+
+:construct-fta-model
+  a sml:ApplyConstruct ;
+  sm:next :convert-document_Return ;
+  sml:constructQuery [
+      a sp:Construct ;
+      sp:text """# 1 - create individuals for all concepts
+CONSTRUCT{
+    ?newc a ?newType.
+    ?newc fta:hasName ?label.
+    ?newc fta:origin ?c    
+}WHERE{
+    ?c a ?oldType.
+    OPTIONAL{
+       ?c rdfs:label ?label.
+    }
+    BIND(IRI(CONCAT(str(fta:), REPLACE(str(?c), "^.*/([^/]+$)","$1"))) AS ?newc)
+}VALUES (?oldType ?newType) {
+    (fmea:Component fta:Component)
+    (fmea:FailureMode fta:FailureMode)
+    (fmea:Function fta:Function)
+    (fmea:FinalLevelEffect fta:FaultEvent)
+    (fmea:LocalEffect fta:FaultEvent)
+    (fmea:NextLevelEffect fta:FaultEvent)
+}
+""" ;
+    ] ;
+  kbss-module:has-output-graph-constraint [
+      a sp:Ask ;
+      sp:text """# 1 - component not found
+ASK
+WHERE {
+    FILTER NOT EXISTS {
+          ?rd a fta:Component .
+    }
+}""" ;
+    ] ;
+  sml:replace true ;
+.
+
+:import-annotated-document-ontology
+  a sml:ImportRDFFromWorkspace ;
+  sm:next :construct-fta-model ;
+  sml:baseURI "http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38" ;
+  sml:ignoreImports true ;
+.
+
+:list-documents_Return
+  a sml:ReturnRDF ;
+  sml:serialization sml:Turtle ;
+.
+
+:convert-document_Return
+  a sml:ReturnRDF ;
+  sml:serialization sml:Turtle ;
+.
+
+:list-documents
+  a sm:Function ;
+  sm:returnModule :list-documents_Return ;
+  rdfs:subClassOf sm:Functions ;
+.
+
+:convert-document
+  a sm:Function ;
+  sm:returnModule :convert-document_Return ;
+  rdfs:subClassOf sm:Functions ;
+.
+
