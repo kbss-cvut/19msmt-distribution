@@ -30,8 +30,8 @@ RUN ln -s /bratcfg /var/www/brat/brat-v1.3_Crunchy_Frog/cfg
 VOLUME /bratdata
 VOLUME /bratcfg
 
-ADD brat_install_wrapper.sh /usr/bin/brat_install_wrapper.sh
-RUN chmod +x /usr/bin/brat_install_wrapper.sh
+ADD ./bin/brat-install-wrapper.sh /usr/bin/brat-install-wrapper.sh
+RUN chmod +x /usr/bin/brat-install-wrapper.sh
 
 # Make sure apache can access it
 RUN chown -R www-data:www-data /var/www/brat/brat-v1.3_Crunchy_Frog/
