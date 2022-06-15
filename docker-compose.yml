@@ -39,17 +39,13 @@ services:
   fta-fmea:
     image: ghcr.io/kbss-cvut/fta-fmea-ui/tool:pr-82
     environment:
-      API_URL: ${API_URL:-http://localhost:9999/fta-fmea}
+      API_URL: ${API_URL:-http://localhost:8090/fta-fmea-server}
       ADMIN_REGISTRATION_ONLY: ${ADMIN_REGISTRATION_ONLY:-false}
-    ports:
-      - "8080:80"
     depends_on:
       - fta-fmea-server
 
   fta-fmea-server:
     image: ghcr.io/kbss-cvut/fta-fmea/tool:pr-24
-    ports:
-      - "9999:8080"
     depends_on:
       - graphdb
     environment:
@@ -62,6 +58,4 @@ services:
       args:
         GRAPHDB_ZIP: ${GRAPHDB_ZIP:-graphdb-free-9.11.2-dist.zip}
     container_name: graphdb
-    ports:
-      - "7200:7200"
 
