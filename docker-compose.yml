@@ -1,15 +1,67 @@
 version: '2'
 
 services:
+#  nginx
+  nginx:
+    build: ./nginx/
+    container_name: msmt-nginx
+    ports:
+      - "8090:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./nginx/.htpasswd:/etc/apache2/.htpasswd
+#      - .:/deploy
+#      - web-storage:/storage
+#      - web:/web
+    depends_on:
+      - graphdb
+      - fta-fmea
+      - fta-fmea-server
+      - fta-fmea-converter
+      - annotator
+
+
   annotator:
     build: ./annotator/
     container_name: msmt-annotator
-  volumes:
-    - ./annotator/brat-data:/brat-data
-    - ./annotator/brat-cfg:/brat-cfg
+    volumes:
+#      - ./annotator/brat-data
+#      - ./annotator/brat-cfg
+      - ./annotator/brat-data:/brat-data
+      - ./annotator/brat-cfg:/brat-cfg
 #  fta-fmea:
 #  fta-fmea-server:
-fta-fmea-converter:
+
+  fta-fmea-converter:
     build: ./fta-fmea-converter/
     container_name: msmt-fta-fmea-converter
-#  nginx
+
+  fta-fmea:
+    image: ghcr.io/kbss-cvut/fta-fmea-ui/tool:pr-82
+    environment:
+      API_URL: ${API_URL:-http://localhost:9999/fta-fmea}
+      ADMIN_REGISTRATION_ONLY: ${ADMIN_REGISTRATION_ONLY:-false}
+    ports:
+      - "8080:80"
+    depends_on:
+      - fta-fmea-server
+
+  fta-fmea-server:
+    image: ghcr.io/kbss-cvut/fta-fmea/tool:pr-24
+    ports:
+      - "9999:8080"
+    depends_on:
+      - graphdb
+    environment:
+      REPOSITORY_URL: ${REPOSITORY_URL:-http://graphdb:7200/repositories/fta-fmea}
+
+  graphdb:
+    build:
+      context: .
+      dockerfile: db-server/Dockerfile
+      args:
+        GRAPHDB_ZIP: ${GRAPHDB_ZIP:-graphdb-free-9.11.2-dist.zip}
+    container_name: graphdb
+    ports:
+      - "7200:7200"
+
