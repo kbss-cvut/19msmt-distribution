@@ -160,7 +160,13 @@ WHERE {
       a sp:Construct ;
       sp:text """# 1 - list documents
 CONSTRUCT{
-    <http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-39> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-40> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-41> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-42> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-43> a fmea:Document.
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-44> a fmea:Document.
 }WHERE{}
 """; ];
   sml:replace true ;
