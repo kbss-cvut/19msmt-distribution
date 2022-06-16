@@ -1,17 +1,15 @@
 #!/bin/bash
 
-#INPUT_DOCUMENT_NAME=
-
 if [ ! "$#" -eq 0 ]; then
-        echo Convert annotated document specified by INPUT_DOCUMENT_NAME.
-        echo Usage :  $0 "INPUT_DOCUMENT_NAME" 
+        echo List all annotated documents.
+        echo Usage :  $0 
         echo Example:
-        echo "  $0 DA42-POH"
+        echo "  $0"
         exit
 fi
 
 
-FUNCTION_ID=convert-document
+FUNCTION_ID=list-documents
 
 DIR="$(dirname $(realpath -s $0))"
 
