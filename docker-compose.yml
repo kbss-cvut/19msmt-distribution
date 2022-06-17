@@ -37,7 +37,7 @@ services:
     container_name: msmt-fta-fmea-converter
 
   fta-fmea:
-    image: ghcr.io/kbss-cvut/fta-fmea-ui/tool:pr-82
+    image: ghcr.io/kbss-cvut/fta-fmea-ui:latest
     environment:
       API_URL: ${API_URL:-http://localhost:8090/fta-fmea-server}
       ADMIN_REGISTRATION_ONLY: ${ADMIN_REGISTRATION_ONLY:-false}
@@ -45,11 +45,13 @@ services:
       - fta-fmea-server
 
   fta-fmea-server:
-    image: ghcr.io/kbss-cvut/fta-fmea/tool:pr-24
+    image: ghcr.io/kbss-cvut/fta-fmea:latest
     depends_on:
       - graphdb
     environment:
       REPOSITORY_URL: ${REPOSITORY_URL:-http://graphdb:7200/repositories/fta-fmea}
+    volumes:
+      - fta-fmea-server:/tmp
 
   graphdb:
     build:
@@ -58,4 +60,9 @@ services:
       args:
         GRAPHDB_ZIP: ${GRAPHDB_ZIP:-graphdb-free-9.11.2-dist.zip}
     container_name: graphdb
+    volumes:
+      - fta-fmea-db-server:/graphdb/home
 
+volumes:
+  fta-fmea-db-server:
+  fta-fmea-server:
