@@ -1,5 +1,6 @@
 # MSMT distribution demo
 
+[Live version](https://kbss.felk.cvut.cz/19msmt-demo/) of this demo.
 
 # Third-party artefacts
 
