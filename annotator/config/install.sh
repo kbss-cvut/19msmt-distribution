@@ -86,10 +86,12 @@ mkdir -p $data_dir_abs
 apache_user=`ps aux | grep -v 'tomcat' | grep '[a]pache\|[h]ttpd' | cut -d ' ' -f 1 | grep -v '^root$' | head -n 1`
 apache_group=`groups $apache_user | head -n 1 | sed 's/ .*//'`
 
-# Place some example data
-
-cp -r ${base_dir}/example-data/corpora ${base_dir}/${DATA_DIR}/examples
-cp -r ${base_dir}/example-data/tutorials ${base_dir}/${DATA_DIR}/tutorials
+# Place some example data if data folder is empty
+if [ ! "`ls -A ${base_dir}/${DATA_DIR}`" ]; then
+	echo "WARN: Data folder ${base_dir}/${DATA_DIR} is empty, thus replacing it with example data ..."
+	cp -r ${base_dir}/example-data/corpora ${base_dir}/${DATA_DIR}/examples
+	cp -r ${base_dir}/example-data/tutorials ${base_dir}/${DATA_DIR}/tutorials
+fi
 
 # Make $work_dir_abs and $data_dir_abs writable by Apache
 
