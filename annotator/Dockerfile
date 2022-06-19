@@ -23,17 +23,19 @@ RUN mkdir /var/www/brat
 COPY ./config/brat-v1.3_Crunchy_Frog.tar.gz /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog.tar.gz
 RUN cd /usr/local/apache2/htdocs && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz && mv brat-v1.3_Crunchy_Frog brat
 
+
+RUN apt-get update && apt-get install -y python
+ADD ./config/httpd.conf /usr/local/apache2/conf/
+ADD ./config/install.sh /usr/local/apache2/htdocs/brat/
+
+# create a symlink so users can mount their data volume at /brat-data rather than the full path
+#RUN mkdir /brat-data
+COPY ./initial-brat-data /brat-data
+RUN ln -s /brat-data /usr/local/apache2/htdocs/brat/data
+
 ENV BRAT_USERNAME brat
 ENV BRAT_PASSWORD brat
 ENV BRAT_ADMIN_EMAIL blcham@gmail.com
-
-ADD ./config/httpd.conf /usr/local/apache2/conf/
-ADD ./config/install.sh /usr/local/apache2/htdocs/brat/
-RUN apt-get update && apt-get install -y python
-
-# create a symlink so users can mount their data volume at /brat-data rather than the full path
-RUN mkdir /brat-data
-RUN ln -s /brat-data /usr/local/apache2/htdocs/brat/data
 
 VOLUME /brat-data
 
