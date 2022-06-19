@@ -29,8 +29,6 @@ services:
 #      - ./annotator/brat-cfg
       - ./annotator/brat-data:/brat-data
       - ./annotator/brat-cfg:/brat-cfg
-#  fta-fmea:
-#  fta-fmea-server:
 
   fta-fmea-converter:
     build: ./fta-fmea-converter/
