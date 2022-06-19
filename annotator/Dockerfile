@@ -29,8 +29,7 @@ ADD ./config/httpd.conf /usr/local/apache2/conf/
 ADD ./config/install.sh /usr/local/apache2/htdocs/brat/
 
 # create a symlink so users can mount their data volume at /brat-data rather than the full path
-#RUN mkdir /brat-data
-COPY ./initial-brat-data /brat-data
+RUN mkdir -p /brat-data
 RUN ln -s /brat-data /usr/local/apache2/htdocs/brat/data
 
 ENV BRAT_USERNAME brat
