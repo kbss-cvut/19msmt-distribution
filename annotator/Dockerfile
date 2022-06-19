@@ -1,9 +1,9 @@
-# Build based on repository https://github.com/cassj/brat-docker
-# start from a base ubuntu image
-FROM ubuntu
+FROM httpd
+
+#FROM ubuntu
 
 # set users cfg file
-ARG USERS_CFG=users.json
+#ARG USERS_CFG=users.json
 
 # Install pre-reqs
 RUN apt-get update
@@ -17,40 +17,28 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Fetch  brat
 RUN mkdir /var/www/brat
 # RUN curl http://weaver.nlplab.org/~brat/releases/brat-v1.3_Crunchy_Frog.tar.gz > /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz 
-COPY ./brat-v1.3_Crunchy_Frog.tar.gz /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz
-RUN cd /var/www/brat && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz
+#COPY ./brat-v1.3_Crunchy_Frog.tar.gz /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz
+#RUN cd /var/www/brat && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz
 
-# create a symlink so users can mount their data volume at /bratdata rather than the full path
-RUN mkdir /bratdata && mkdir /bratcfg
-RUN chown -R www-data:www-data /bratdata /bratcfg 
-RUN chmod o-rwx /bratdata /bratcfg
-RUN ln -s /bratdata /var/www/brat/brat-v1.3_Crunchy_Frog/data
-RUN ln -s /bratcfg /var/www/brat/brat-v1.3_Crunchy_Frog/cfg 
+COPY ./config/brat-v1.3_Crunchy_Frog.tar.gz /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog.tar.gz
+RUN cd /usr/local/apache2/htdocs && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz && mv brat-v1.3_Crunchy_Frog brat
 
-# And make that location a volume
-VOLUME /bratdata
-VOLUME /bratcfg
 
-ADD ./bin/brat-install-wrapper.sh /usr/bin/brat-install-wrapper.sh
-RUN chmod +x /usr/bin/brat-install-wrapper.sh
+RUN apt-get update && apt-get install -y python
+ADD ./config/httpd.conf /usr/local/apache2/conf/
+ADD ./config/install.sh /usr/local/apache2/htdocs/brat/
 
-# Make sure apache can access it
-RUN chown -R www-data:www-data /var/www/brat/brat-v1.3_Crunchy_Frog/
+# create a symlink so users can mount their data volume at /brat-data rather than the full path
+RUN mkdir -p /brat-data
+RUN ln -s /brat-data /usr/local/apache2/htdocs/brat/data
 
-ADD ./conf/000-default.conf /etc/apache2/sites-available/000-default.conf
+ENV BRAT_USERNAME brat
+ENV BRAT_PASSWORD brat
+ENV BRAT_ADMIN_EMAIL blcham@gmail.com
 
-# add the user patching script
-ADD ./bin/user-patch.py /var/www/brat/brat-v1.3_Crunchy_Frog/user-patch.py
+VOLUME /brat-data
 
-# Enable cgi
-RUN a2enmod cgi
+#RUN FastCGI 
+#RUN cd /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/server/lib/ && tar xfz flup-1.0.2.tar.gz 
 
-EXPOSE 80
-
-# We can't use apachectl as an entrypoint because it starts apache and then exits, taking your container with it. 
-# Instead, use supervisor to monitor the apache process
-RUN mkdir -p /var/log/supervisor
-
-ADD ./conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
-
-CMD ["/usr/bin/supervisord"]
+CMD /usr/local/apache2/htdocs/brat/install.sh $BRAT_USERNAME $BRAT_PASSWORD $BRAT_ADMIN_EMAIL && httpd-foreground

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isFunctionOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Function"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/next_level_effect_description">
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/compensating_provision_description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/CompensatingProvision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/FMEA_nr">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FMEA"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/FMEA_description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FMEA"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasCause">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Cause"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isCauseOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasEngineLevelEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/EngineLevelEffect"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isEngineLevelEffectOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/occurence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isLocalEffectOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Function"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isFunctionOf"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/cause_description">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/function_reference_nr">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Function"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/component_name">
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isFailureModeOf">
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasFailureMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isFailureModeOf"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/engine_level_effect_description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/EngineLevelEffect"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/CompensatingProvision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isNextLevelEffectOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasNextLevelEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isNextLevelEffectOf"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasCompensatingProvision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/CompensatingProvision"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isCompensatingProvisionOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/severity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isCauseOf">
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/hasLocalEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isLocalEffectOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isViolatedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/violates"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/failure_mode_reference_nr">
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/FMEA_leader">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FMEA"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/examines">
+    <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/isExaminedBy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FMEA"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isEngineLevelEffectOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/EngineLevelEffect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/local_effect_description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/EngineLevelEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Effect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/component_reference_nr">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/violates">
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Function"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isExaminedBy">
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FMEA"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/failure_mode_description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/function_description">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Function"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/FMEA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/Cause">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/isCompensatingProvisionOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/CompensatingProvision"/>
+    <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Effect"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect">
+    <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/Effect"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/Effect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/fmea/FailureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/Component">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/fmea/Function">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>

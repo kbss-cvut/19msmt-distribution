@@ -6,7 +6,7 @@ RUN git clone https://kbss.felk.cvut.cz/gitblit/r/s-pipes-modules.git
 FROM ghcr.io/kbss-cvut/s-pipes/s-pipes-engine:latest
 
 COPY --from=modules ./s-pipes-modules /scripts/s-pipes-modules
-COPY . /scripts/root
+COPY ./src /scripts/root
 
 # TODO keep annotations as shared volume
 #COPY . /scripts/annotation 
