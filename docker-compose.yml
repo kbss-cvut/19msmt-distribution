@@ -24,7 +24,7 @@ services:
       BRAT_PASSWORD: ${BRAT_PASSWORD:-editor}
       BRAT_EMAIL: ${BRAT_EMAIL:-admin@example.org}
     volumes:
-      - ../brat-data:/brat-data
+      - ./brat-data:/brat-data
 
   fta-fmea-converter:
     build: ./fta-fmea-converter/
