@@ -1,7 +1,6 @@
 version: '2'
 
 services:
-#  nginx
   nginx:
     build: ./nginx/
     container_name: msmt-nginx
@@ -9,10 +8,7 @@ services:
       - "${PORT:-8090}:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-#      - ./nginx/.htpasswd:/etc/apache2/.htpasswd
-#      - .:/deploy
-#      - web-storage:/storage
-#      - web:/web
+      - ./nginx/web:/web
     depends_on:
       - graphdb
       - fta-fmea
@@ -20,20 +16,21 @@ services:
       - fta-fmea-converter
       - annotator
 
-
   annotator:
     build: ./annotator/
     container_name: msmt-annotator
     environment:
       BRAT_USERNAME: ${BRAT_USERNAME:-editor}
       BRAT_PASSWORD: ${BRAT_PASSWORD:-editor}
-      BRAT_EMAIL: ${BRAT_EMAIL:admin@example.org}
+      BRAT_EMAIL: ${BRAT_EMAIL:-admin@example.org}
     volumes:
       - ../brat-data:/brat-data
 
   fta-fmea-converter:
     build: ./fta-fmea-converter/
     container_name: msmt-fta-fmea-converter
+    volumes:
+      - ../brat-data:/scripts/annotations
 
   fta-fmea:
     image: ghcr.io/kbss-cvut/fta-fmea-ui:latest
