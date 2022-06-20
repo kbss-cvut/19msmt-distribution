@@ -19,6 +19,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix fmea:<http://onto.fel.cvut.cz/ontologies/fmea/> .
 @prefix fta: <http://onto.fel.cvut.cz/ontologies/fta-fmea-application/> .
+@prefix annotations: <https://onto.fel.cvut.cz/ontologies/annotations/> .
 
 <http://onto.fel.cvut.cz/ontologies/msmt/annotation-conversion>
   a owl:Ontology ;
@@ -37,10 +38,9 @@ CONSTRUCT{
     ?newc fta:origin ?c .
 	?newc dc-terms:source ?link .
 }WHERE{
-    ?c a ?oldType .
-    OPTIONAL{
-       ?c rdfs:label ?label .
-    }
+    ?c a ?oldType ;
+       annotations:isDenotedBy ?label .
+    
 	OPTIONAL{
 	  ?c dc-terms:source ?link .
 	}
@@ -65,7 +65,7 @@ CONSTRUCT{
 	?newc dc-terms:source ?link .
 }WHERE{
 	?c a fmea:FailureMode ;
-	   rdfs:label ?label .
+	   annotations:isDenotedBy ?label .
 	OPTIONAL {
 	   ?c dc-terms:source ?link .
 	}
@@ -85,7 +85,7 @@ CONSTRUCT{
 	?newc dc-terms:source ?link .
 }WHERE{
 	?c a fmea:Cause;
-	   rdfs:label ?label .
+	   annotations:isDenotedBy ?label .
 	OPTIONAL {
 	   ?c dc-terms:source ?link .
 	}   
@@ -160,7 +160,6 @@ WHERE {
       a sp:Construct ;
       sp:text """# 1 - list documents
 CONSTRUCT{
-	// TODO add labels
 	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38> a fta:Document;
 		fta:hasName "DA42-POH-38".
 	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-39> a fta:Document;

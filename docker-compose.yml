@@ -44,8 +44,11 @@ services:
     image: ghcr.io/kbss-cvut/fta-fmea:latest
     depends_on:
       - graphdb
+      - fta-fmea-converter
     environment:
       REPOSITORY_URL: ${REPOSITORY_URL:-http://graphdb:7200/repositories/fta-fmea}
+      LIST_DOCUMENT_API: ${LIST_DOCUMENT_API:-http://fta-fmea-converter:8080/s-pipes/service?_pId=list-documents}
+      CONVERT_DOCUMENT_API: ${CONVERT_DOCUMENT_API:-http://fta-fmea-converter:8080/s-pipes/service?_pId=convert-document}
     volumes:
       - fta-fmea-server:/tmp
 
@@ -61,4 +64,4 @@ services:
 
 volumes:
   fta-fmea-db-server:
-  fta-fmea-server:
+
