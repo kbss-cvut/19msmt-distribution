@@ -61,4 +61,4 @@ services:
 
 volumes:
   fta-fmea-db-server:
-  fta-fmea-server:
+
