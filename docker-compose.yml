@@ -30,7 +30,7 @@ services:
     build: ./fta-fmea-converter/
     container_name: msmt-fta-fmea-converter
     volumes:
-      - ../brat-data:/scripts/annotations
+      - ./brat-data:/scripts/annotations
 
   fta-fmea:
     image: ghcr.io/kbss-cvut/fta-fmea-ui:latest
