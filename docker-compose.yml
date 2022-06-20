@@ -50,8 +50,6 @@ services:
       - graphdb
     environment:
       REPOSITORY_URL: ${REPOSITORY_URL:-http://graphdb:7200/repositories/fta-fmea}
-    volumes:
-      - fta-fmea-server:/tmp
 
   graphdb:
     build:
@@ -65,4 +63,3 @@ services:
 
 volumes:
   fta-fmea-db-server:
-  fta-fmea-server:
