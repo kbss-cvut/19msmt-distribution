@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  annotator:
+    build: .
+    ports:
+      - ${PORT:-8091}:80
+    environment:
+      BRAT_USERNAME: editor
+      BRAT_PASSWORD: editor
+      BRAT_EMAIL: admin@example.org
+    volumes:
+      - ../brat-data:/brat-data
