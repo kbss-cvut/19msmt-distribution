@@ -7,6 +7,3 @@ FROM ghcr.io/kbss-cvut/s-pipes/s-pipes-engine:latest
 
 COPY --from=modules ./s-pipes-modules /scripts/s-pipes-modules
 COPY ./src /scripts/root
-
-# TODO keep annotations as shared volume
-#COPY . /scripts/annotation 
