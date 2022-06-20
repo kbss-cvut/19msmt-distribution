@@ -49,8 +49,6 @@ services:
       REPOSITORY_URL: ${REPOSITORY_URL:-http://graphdb:7200/repositories/fta-fmea}
       LIST_DOCUMENT_API: ${LIST_DOCUMENT_API:-http://fta-fmea-converter:8080/s-pipes/service?_pId=list-documents}
       CONVERT_DOCUMENT_API: ${CONVERT_DOCUMENT_API:-http://fta-fmea-converter:8080/s-pipes/service?_pId=convert-document}
-    volumes:
-      - fta-fmea-server:/tmp
 
   graphdb:
     build:
