@@ -40,17 +40,29 @@ CONSTRUCT{
 }WHERE{
     ?c a ?oldType ;
        annotations:isDenotedBy ?label .
-    
+	
+	
+	
+	BIND(
+		IF(strends(str(?oldType), 'Component'), 
+			fta:Component, 
+			IF(strends(str(?oldType), 'Function'), 
+				fta:Function, 
+				IF(strends(str(?oldType), 'Effect'), 
+				fta:FaultEvent, fta:null))) as ?newType)
+				
+	FILTER (?newType != fta:null)
+	BIND(IRI(CONCAT(str(?newType), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
+	
 	OPTIONAL{
 	  ?c dc-terms:source ?link .
 	}
-    BIND(IRI(CONCAT(str(fta:), REPLACE(str(?c), "^.*/([^/]+$)","$1"))) AS ?newc)
-}VALUES (?oldType ?newType) {
-    (fmea:Component fta:Component)
-    (fmea:Function fta:Function)
-    (fmea:FinalLevelEffect fta:FaultEvent)
-    (fmea:LocalEffect fta:FaultEvent)
-    (fmea:NextLevelEffect fta:FaultEvent)
+}VALUES ?oldType {
+    fmea:Component
+    fmea:Function
+    fmea:FinalLevelEffect
+    fmea:LocalEffect
+    fmea:NextLevelEffect
 }
 """; ];
   sml:constructQuery [
@@ -69,7 +81,7 @@ CONSTRUCT{
 	OPTIONAL {
 	   ?c dc-terms:source ?link .
 	}
-	BIND(IRI(CONCAT(str(fta:), REPLACE(str(?c), "^.*/([^/]+$)","$1"))) AS ?newc)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 }
 
 """; ];
@@ -89,7 +101,7 @@ CONSTRUCT{
 	OPTIONAL {
 	   ?c dc-terms:source ?link .
 	}   
-	BIND(IRI(CONCAT(str(fta:), REPLACE(str(?c), "^.*/([^/]+$)","$1"))) AS ?newc)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 }
 """; ];
   sml:constructQuery [
@@ -103,8 +115,8 @@ CONSTRUCT{
            fmea:hasComponent ?part .
     ?part a fmea:Component .
 	
-    BIND(IRI(CONCAT(str(fta:), REPLACE(str(?whole), "^.*/([^/]+$)","$1"))) AS ?newWhole)
-    BIND(IRI(CONCAT(str(fta:), REPLACE(str(?part), "^.*/([^/]+$)","$1"))) AS ?newPart)
+    BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?whole), '^.*/([^/]+$)','$1'))) AS ?newWhole)
+    BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?part), '^.*/([^/]+$)','$1'))) AS ?newPart)
 }
  """ ;
     ] ;
@@ -118,8 +130,18 @@ CONSTRUCT{
            ?oldProp ?behavior .
     ?behavior a ?range .
 
-    BIND(IRI(CONCAT(str(fta:), REPLACE(str(?comp), "^.*/([^/]+$)","$1"))) AS ?newComp)
-    BIND(IRI(CONCAT(str(fta:), REPLACE(str(?behavior), "^.*/([^/]+$)","$1"))) AS ?newBehavior)
+    BIND(
+		IF(STRENDS(str(?range), 'Function'), 
+			fta:Function,
+			IF(strends(str(?range), 'FailureMode'),
+				fta:FailureMode,
+				fta:null))
+		as ?newRange
+	)
+	FILTER(?newRange != fta:null)
+
+    BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?comp), '^.*/([^/]+$)','$1'))) AS ?newComp)
+    BIND(IRI(CONCAT(str(?range), '/', REPLACE(str(?behavior), '^.*/([^/]+$)','$1'))) AS ?newBehavior)
 }VALUES (?oldProp ?newProp ?range) {
 	(fmea:hasFailureMode fta:hasFailureMode fmea:FailureMode)
 	(fmea:hasFunction fta:hasFunction fmea:Function)
@@ -136,8 +158,8 @@ CONSTRUCT{
 	   fmea:isCauseOf ?fm .
 	?fm a fmea:FailureMode .
 
-	BIND(IRI(CONCAT(str(fta:), REPLACE(str(?c), "^.*/([^/]+$)","$1"))) AS ?newc)
-	BIND(IRI(CONCAT(str(fta:), REPLACE(str(?fm), "^.*/([^/]+$)","$1"))) AS ?newFm)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?fm), '^.*/([^/]+$)','$1'))) AS ?newFm)
 }
 
 """; ];
