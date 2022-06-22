@@ -36,7 +36,7 @@ CONSTRUCT{
     ?newc a ?newType .
     ?newc fta:hasName ?label .
     ?newc fta:origin ?c .
-	?newc dc-terms:source ?link .
+	?newc dc-terms:source ?linkIRI .
 }WHERE{
     ?c a ?oldType ;
        annotations:isDenotedBy ?label .
@@ -56,6 +56,7 @@ CONSTRUCT{
 	
 	OPTIONAL{
 	  ?c dc-terms:source ?link .
+	  BIND(iri(str(?link)) as ?linkIRI) 
 	}
 }VALUES ?oldType {
     fmea:Component
@@ -74,12 +75,13 @@ CONSTRUCT{
 	?newc fta:hasFailureModeType "FailureMode"@cs .
 	?newc fta:hasName ?label .
 	?newc fta:origin ?c .
-	?newc dc-terms:source ?link .
+	?newc dc-terms:source ?linkIRI .
 }WHERE{
 	?c a fmea:FailureMode ;
 	   annotations:isDenotedBy ?label .
 	OPTIONAL {
 	   ?c dc-terms:source ?link .
+	   BIND(iri(str(?link)) as ?linkIRI) 
 	}
 	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 }
@@ -94,12 +96,13 @@ CONSTRUCT{
 	?newc fta:hasFailureModeType "FailureModeCause"@cs .
 	?newc fta:hasName ?label .
 	?newc fta:origin ?c .
-	?newc dc-terms:source ?link .
+	?newc dc-terms:source ?linkIRI .
 }WHERE{
 	?c a fmea:Cause;
 	   annotations:isDenotedBy ?label .
 	OPTIONAL {
 	   ?c dc-terms:source ?link .
+	   BIND(iri(str(?link)) as ?linkIRI) 
 	}   
 	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 }
@@ -141,7 +144,7 @@ CONSTRUCT{
 	FILTER(?newRange != fta:null)
 
     BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?comp), '^.*/([^/]+$)','$1'))) AS ?newComp)
-    BIND(IRI(CONCAT(str(?range), '/', REPLACE(str(?behavior), '^.*/([^/]+$)','$1'))) AS ?newBehavior)
+    BIND(IRI(CONCAT(str(?newRange), '/', REPLACE(str(?behavior), '^.*/([^/]+$)','$1'))) AS ?newBehavior)
 }VALUES (?oldProp ?newProp ?range) {
 	(fmea:hasFailureMode fta:hasFailureMode fmea:FailureMode)
 	(fmea:hasFunction fta:hasFunction fmea:Function)
