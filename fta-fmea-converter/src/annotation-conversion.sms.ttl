@@ -214,7 +214,12 @@ CONSTRUCT{
 :import-annotated-document-ontology
   a sml:ImportRDFFromWorkspace ;
   sm:next :construct-fta-model ;
-  sml:baseURI "http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38" ;
+  sml:baseURI [
+      rdf:type sp:str ;
+      sp:arg1 [
+          sp:varName "documentIri" ;
+      ] ;
+  ] ;
   sml:ignoreImports true ;
 .
 
