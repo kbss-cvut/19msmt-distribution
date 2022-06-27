@@ -1,17 +1,18 @@
 #!/bin/bash
 
-#INPUT_DOCUMENT_NAME=
 
-if [ ! "$#" -eq 0 ]; then
-        echo Convert annotated document specified by INPUT_DOCUMENT_NAME.
-        echo Usage :  $0 "INPUT_DOCUMENT_NAME" 
+if [ ! "$#" -eq 1 ]; then
+        echo Convert annotated document specified by INPUT_DOCUMENT_IRI.
+        echo Usage :  $0 "INPUT_DOCUMENT_IRI" 
         echo Example:
-        echo "  $0 DA42-POH"
+        echo "  $0 http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-41"
         exit
 fi
 
 
 FUNCTION_ID=convert-document
+INPUT_DOCUMENT_IRI=$1
+#INPUT_DOCUMENT_IRI=http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-41
 
 DIR="$(dirname $(realpath -s $0))"
 
@@ -23,11 +24,12 @@ OUTPUT_FILE=./target/output.ttl.txt
 echo "==================================="
 echo "INFO: s-pipes service url $SPIPES_SERVICE"
 echo "INFO: function id $FUNCTION_ID"
+echo "INFO: document iri $INPUT_DOCUMENT_IRI"
 echo "==================================="
 
 mkdir -p ./target
 
-URL="$SPIPES_SERVICE/service?_pId=$FUNCTION_ID"
+URL="$SPIPES_SERVICE/service?_pId=$FUNCTION_ID&documentIri=$INPUT_DOCUMENT_IRI"
 
 set -x
 
