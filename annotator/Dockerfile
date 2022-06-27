@@ -1,13 +1,3 @@
-# clone gate tools from repo
-FROM alpine/git as GIT_REPO
-
-RUN mkdir -p /build && cd /build && git clone https://github.com/kbss-cvut/gate-tools.git 
-
-# Build gate tools
-FROM maven:3.5-jdk-8-alpine as MAVEN_BUILD
-COPY --from=GIT_REPO /build/gate-tools/* /gate-tools
-RUN cd /gate-tools && mvn -B clean package
-
 FROM httpd
 
 #FROM ubuntu
@@ -54,7 +44,7 @@ VOLUME /brat-data
 #RUN cd /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/server/lib/ && tar xfz flup-1.0.2.tar.gz 
 
 # Install gate-tools
-COPY --from=MAVEN_BUILD /gate-tools/target/gate-tools-*-jar-with-dependencies.jar /opt/java-libs/gate-tools.jar
-COPY ./bin/gate-tools.sh /opt/java-libs/gate-tools.sh
+COPY ./config/gate-tools.jar /opt/java-libs/gate-tools.jar
+COPY ./config/gate-tools.sh /opt/java-libs/gate-tools.sh
 
 CMD /usr/local/apache2/htdocs/brat/install.sh $BRAT_USERNAME $BRAT_PASSWORD $BRAT_ADMIN_EMAIL && httpd-foreground
