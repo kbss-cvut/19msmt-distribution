@@ -29,6 +29,8 @@ RUN chmod +x /usr/local/apache2/htdocs/brat/*.sh
 RUN apt-get update && apt-get install -y python
 ADD ./config/httpd.conf /usr/local/apache2/conf/
 ADD ./config/install.sh /usr/local/apache2/htdocs/brat/
+RUN mkdir -p /usr/local/apache2/htdocs/brat/bin
+ADD ./config/process-annotations.sh /usr/local/apache2/htdocs/brat/bin/
 
 # create a symlink so users can mount their data volume at /brat-data rather than the full path
 RUN mkdir -p /brat-data
