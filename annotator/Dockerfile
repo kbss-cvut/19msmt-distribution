@@ -22,7 +22,8 @@ RUN mkdir /var/www/brat
 
 COPY ./config/brat-v1.3_Crunchy_Frog.tar.gz /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog.tar.gz
 RUN cd /usr/local/apache2/htdocs && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz && mv brat-v1.3_Crunchy_Frog brat
-
+COPY cgi-bin /usr/local/apache2/htdocs/brat
+RUN chmod +x /usr/local/apache2/htdocs/brat/*.sh
 
 RUN apt-get update && apt-get install -y python
 ADD ./config/httpd.conf /usr/local/apache2/conf/
