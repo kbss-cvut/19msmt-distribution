@@ -118,8 +118,8 @@ CONSTRUCT{
            fmea:hasComponent ?part .
     ?part a fmea:Component .
 	
-    BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?whole), '^.*/([^/]+$)','$1'))) AS ?newWhole)
-    BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?part), '^.*/([^/]+$)','$1'))) AS ?newPart)
+    BIND(IRI(CONCAT(str(fta:Component), '/instance-', REPLACE(str(?whole), '^.*/([^/]+$)','$1'))) AS ?newWhole)
+    BIND(IRI(CONCAT(str(fta:Component), '/instance-', REPLACE(str(?part), '^.*/([^/]+$)','$1'))) AS ?newPart)
 }
  """ ;
     ] ;
@@ -143,8 +143,8 @@ CONSTRUCT{
 	)
 	FILTER(?newRange != fta:null)
 
-    BIND(IRI(CONCAT(str(fta:Component), '/', REPLACE(str(?comp), '^.*/([^/]+$)','$1'))) AS ?newComp)
-    BIND(IRI(CONCAT(str(?newRange), '/', REPLACE(str(?behavior), '^.*/([^/]+$)','$1'))) AS ?newBehavior)
+    BIND(IRI(CONCAT(str(fta:Component), '/instance-', REPLACE(str(?comp), '^.*/([^/]+$)','$1'))) AS ?newComp)
+    BIND(IRI(CONCAT(str(?newRange), '/instance-', REPLACE(str(?behavior), '^.*/([^/]+$)','$1'))) AS ?newBehavior)
 }VALUES (?oldProp ?newProp ?range) {
 	(fmea:hasFailureMode fta:hasFailureMode fmea:FailureMode)
 	(fmea:hasFunction fta:hasFunction fmea:Function)
@@ -161,8 +161,8 @@ CONSTRUCT{
 	   fmea:isCauseOf ?fm .
 	?fm a fmea:FailureMode .
 
-	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
-	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?fm), '^.*/([^/]+$)','$1'))) AS ?newFm)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/instance-', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/instance-', REPLACE(str(?fm), '^.*/([^/]+$)','$1'))) AS ?newFm)
 }
 
 """; ];
