@@ -30,8 +30,8 @@ img {
 }
 
 iframe {
-    height: 300px;
-    width: 600px;
+    height: 400px;
+    width: 800px;
 }
 
 .header {
@@ -71,8 +71,12 @@ iframe {
 
 .showcase-videos {
     display: flex;
-    flex-direction: row;
+    flex-flow: wrap row;
     justify-content: space-around;
     width: 100%;
-    padding-top: 5rem;
+    padding: 3rem;
+}
+
+.showcase-videos iframe {
+    margin: 1rem;
 }
