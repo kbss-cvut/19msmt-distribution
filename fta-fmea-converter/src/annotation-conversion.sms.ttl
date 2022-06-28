@@ -52,7 +52,7 @@ CONSTRUCT{
 				fta:FaultEvent, fta:null))) as ?newType)
 				
 	FILTER (?newType != fta:null)
-	BIND(IRI(CONCAT(str(?newType), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
+	BIND(IRI(CONCAT(str(?newType), '/instance-', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 	
 	OPTIONAL{
 	  ?c dc-terms:source ?link .
@@ -83,7 +83,7 @@ CONSTRUCT{
 	   ?c dc-terms:source ?link .
 	   BIND(iri(str(?link)) as ?linkIRI) 
 	}
-	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/instance-', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 }
 
 """; ];
@@ -104,7 +104,7 @@ CONSTRUCT{
 	   ?c dc-terms:source ?link .
 	   BIND(iri(str(?link)) as ?linkIRI) 
 	}   
-	BIND(IRI(CONCAT(str(fta:FailureMode), '/', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
+	BIND(IRI(CONCAT(str(fta:FailureMode), '/instance-', REPLACE(str(?c), '^.*/([^/]+$)','$1'))) AS ?newc)
 }
 """; ];
   sml:constructQuery [
