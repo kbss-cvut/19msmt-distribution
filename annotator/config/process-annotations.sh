@@ -25,7 +25,7 @@ ls -1 */*/*.txt | while read TEXT_FILE; do
         fi
 
         echo INFO: Processing $TEXT_FILE ...
-        $GATE_TOOLS brat2gate --input-text-file $TEXT_FILE --brat-server-url https://kbss.felk.cvut.cz/19msmt-demo/anotator --brat-data-home-directory $BRAT_DATA_HOME
+        $GATE_TOOLS brat2gate --input-text-file $TEXT_FILE --brat-server-url https://kbss.felk.cvut.cz/19msmt-demo/annotator --brat-data-home-directory $BRAT_DATA_HOME
 done
  
 # give rights for brat web tool
