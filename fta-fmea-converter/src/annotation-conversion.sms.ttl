@@ -185,12 +185,14 @@ WHERE {
       a sp:Construct ;
       sp:text """# 1 - list documents
 CONSTRUCT{
-	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--demo> a fta:Document;
-		fta:hasName "DA42-POH Simple Demo".
-	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--section-7_3-7_4> a fta:Document;
-		fta:hasName "DA42-POH sections 7.3 to 7.4".
-	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--section-7_9-7_14> a fta:Document;
-		fta:hasName "DA42-POH sections 7.9 to 7.14".
+	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--demo/DA42-POH-38> a fta:Document;
+		fta:hasName "DA42-POH-38 - Simple Demo".
+		
+	<http://onto.fel.cvut.cz/ontologies/fmea/BlueSky/DA42-POH--section-7_3-7_4/DA42-POH-39> a fta:Document;
+		fta:hasName "DA42-POH-39 - sections 7.3 to 7.4".
+		
+	<http://onto.fel.cvut.cz/ontologies/fmea/BlueSky/DA42-POH--section-7_9-7_14/DA42-POH-44> a fta:Document;
+		fta:hasName "DA42-POH-44 - sections 7.9 to 7.14".
 		
 	<http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38> a fta:Document;
 		fta:hasName "DA42-POH-38".
