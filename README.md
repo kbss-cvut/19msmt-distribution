@@ -1,6 +1,19 @@
-# MSMT distribution demo
+# LTACH19032 project distribution
 
-[Live version](https://kbss.felk.cvut.cz/19msmt-demo/) of this demo.
+This repository contains references to all developed artefacts within the project [Ontology engineering utilization in reliability and quality knowledge management systems in the aviation](https://starfos.tacr.cz/en/project/LTACH19032?query_code=5yiyaackalka) including reference to live demo and video demonstrations of the developed system. The project was focused on development of a knowledge management system in air transport with utilization of ontology engineering in the domain. The goal of the project was application of quality and reliability conceptual modeling to represent knowledge and correlations in quality and reliability data.
+
+## System modules
+
+The developed system contains 4 modules:
+- reliability ontology
+- nlp-releated tools 
+- ontology-based annotation tool
+- web tool for reliability analysis - it supports analysis of hardware systems by means of Fault-tree Analysis (FTA) and Failure Modes and Effects Analysis (FMEA).
+
+
+## Live demo
+
+[Live demo](https://kbss.felk.cvut.cz/19msmt-demo/) consist of two integrated web applications. The Annotator tool is used to annotate documents (e.g. an airplain flight manual), which can be then imported to the tool used for reliability analysis of hardware systems by means of Fault-tree Analysis (FTA) and Failure Modes and Effects Analysis (FMEA).
 
 ## Dockerization
 
