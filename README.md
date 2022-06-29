@@ -17,7 +17,7 @@ To demonstrate the functionality of developed software artefacts described above
 
 ### Live demo
 
-[Live demo](https://kbss.felk.cvut.cz/19msmt-demo/) in addition to mentioned web components contains video demonstrations of the developed demo. 
+[Live demo](https://kbss.felk.cvut.cz/19msmt-demo/) in addition to mentioned web components contains video demonstrations of the developed system. 
 
 ### Dockerization
 
