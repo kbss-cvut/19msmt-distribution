@@ -15,11 +15,11 @@ Within the project four standalone software artefacts were developed:
 
 To demonstrate the functionality of developed software artefacts described above the demo application was developed. It is a web application consisting of two integrated tools -- 1) _Annotator tool_ is used to annotate documents (e.g. an airplain flight manual), which can be then imported to the _FTA-FMEA tool_ and used for reliability analysis of hardware systems. User manuals of both of the tools are available within referenced artefacts above.
 
-## Live demo
+### Live demo
 
 [Live demo](https://kbss.felk.cvut.cz/19msmt-demo/) in addition to mentioned web components contains video demonstrations of the developed demo. 
 
-## Dockerization
+### Dockerization
 
 1. Download [GraphDB](https://graphdb.ontotext.com/) standalone server ZIP archive and place it into the `db-server` folder.
 2. Set `GRAPHDB_ZIP` variable in `.env` file to point to the downloaded zip file.
