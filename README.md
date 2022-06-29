@@ -29,7 +29,7 @@ The demo is standard multi-container Docker application that uses [Docker Compse
 - System requirements: minimum 8GB of memory
 - [Docker](https://docs.docker.com/install/) installed on the system 
 
-### Running demo
+### Running the system
 
 To run the demo, navigate to the root of the project and and execute following steps:
 1. Download [GraphDB](https://graphdb.ontotext.com/) standalone server ZIP archive and place it into the `db-server` folder.
