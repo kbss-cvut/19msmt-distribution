@@ -2,7 +2,7 @@
 
 This repository contains references to all developed artefacts within the project [Ontology engineering utilization in reliability and quality knowledge management systems in the aviation](https://starfos.tacr.cz/en/project/LTACH19032?query_code=5yiyaackalka) including reference to live demo and video demonstrations of the developed system. The project was focused on development of a knowledge management system in air transport with utilization of ontology engineering in the domain. The goal of the project was application of quality and reliability conceptual modeling to represent knowledge and correlations in quality and reliability data.
 
-## System modules
+## Main artefacts of the distribution
 
 The developed system contains 4 modules:
 - [Reliability model](https://github.com/kbss-cvut/reliability-model) - Semantic Web ontologies mainly based on [Unified Foundational Ontology (UFO)]( https://nemo.inf.ufes.br/en/projetos/ufo/)
