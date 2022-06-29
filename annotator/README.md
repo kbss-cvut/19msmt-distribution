@@ -6,7 +6,7 @@ Annotator is ontology enhanced tool for annotating text. It is extension of [Bra
 	
 - [Docker](https://docs.docker.com/install/) installed on the system 
 - Operating systems: Linux, MacOS or Windows
-- System requirements: minimum 8GB of memory
+- System requirements: minimum 4GB of memory
 
 Brat login requires username, password and admin email to be mentioned by the user. These arguements can be specified in environment variables, see usage in `./docker-compose.yml`.
 
