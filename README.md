@@ -5,10 +5,10 @@ This repository contains references to all developed artefacts within the projec
 ## System modules
 
 The developed system contains 4 modules:
-- reliability ontology
-- nlp-releated tools 
-- ontology-based annotation tool
-- web tool for reliability analysis - it supports analysis of hardware systems by means of Fault-tree Analysis (FTA) and Failure Modes and Effects Analysis (FMEA).
+- [Reliability model](https://github.com/kbss-cvut/reliability-model) - Semantic Web ontologies mainly based on [Unified Foundational Ontology (UFO)]( https://nemo.inf.ufes.br/en/projetos/ufo/)
+- [NLP-releated tools](https://github.com/kbss-cvut/gate-tools) 
+- [Ontology-based annotation tool](./annotator)
+- [Web-based tool for reliability analysis](https://github.com/kbss-cvut/fta-fmea-ui) - it supports analysis of hardware systems by means of Fault-tree Analysis (FTA) and Failure Modes and Effects Analysis (FMEA). The tool consist of Java-based [backend](https://github.com/kbss-cvut/fta-fmea-ui) and  [frontend](https://github.com/kbss-cvut/fta-fmea-ui) written in Javascript framework React.
 
 
 ## Live demo
