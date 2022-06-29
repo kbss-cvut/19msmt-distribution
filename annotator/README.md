@@ -1,8 +1,8 @@
 # Annotator
 
-Annotator is ontology enhanced tool for annotating text. It uses Brat - Brat Rapid Annotation Tool is an online environment for collaborative text annotation. 
+Annotator is ontology enhanced tool for annotating text. It uses Brat - [Brat Rapid Annotation Tool](https://brat.nlplab.org/) is an online environment for collaborative text annotation. 
 
-## Installation Requirements:
+## Installation Requirements
 	
 - [Docker](https://docs.docker.com/install/) installed on the system 
 - Operating systems: Linux, MacOS or Windows
