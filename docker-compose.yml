@@ -20,7 +20,7 @@ services:
   annotator:
     build: ./annotator/
     container_name: msmt-annotator
-    restart: always
+    restart: unless-stopped
     environment:
       BRAT_USERNAME: ${BRAT_USERNAME:-editor}
       BRAT_PASSWORD: ${BRAT_PASSWORD:-editor}
@@ -31,13 +31,13 @@ services:
   fta-fmea-converter:
     build: ./fta-fmea-converter/
     container_name: msmt-fta-fmea-converter
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./brat-data:/scripts/annotations
 
   fta-fmea:
     image: ghcr.io/kbss-cvut/fta-fmea-ui:latest
-    restart: always
+    restart: unless-stopped
     environment:
       API_URL: ${API_URL:-http://localhost:8090/fta-fmea-server}
       ADMIN_REGISTRATION_ONLY: ${ADMIN_REGISTRATION_ONLY:-false}
@@ -46,7 +46,7 @@ services:
 
   fta-fmea-server:
     image: ghcr.io/kbss-cvut/fta-fmea:latest
-    restart: always
+    restart: unless-stopped
     depends_on:
       - graphdb
       - fta-fmea-converter
@@ -61,6 +61,7 @@ services:
       dockerfile: db-server/Dockerfile
       args:
         GRAPHDB_ZIP: ${GRAPHDB_ZIP:-graphdb-free-9.11.2-dist.zip}
+    restart: unless-stopped
     container_name: graphdb
     volumes:
       - fta-fmea-db-server:/graphdb/home
