@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM eclipse-temurin:11-jdk
 
 ARG GRAPHDB_ZIP
 
@@ -10,6 +10,11 @@ RUN \
 ENV GRAPHDB_VOLUME=/graphdb
 ENV GRAPHDB_HOME=${GRAPHDB_VOLUME}/home
 ENV GRAPHDB_INSTALL_DIR=${GRAPHDB_VOLUME}/dist
+
+# Install unzip
+RUN apt-get update && \
+    apt-get install -y unzip && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $GRAPHDB_VOLUME $GRAPHDB_INSTALL_DIR $GRAPHDB_HOME
 
